@@ -183,27 +183,21 @@
 
     .notes strong { color: var(--primary); }
 
-    .video-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: .5rem;
+    .watch-btn {
+      display: block;
+      text-align: center;
+      padding: .85rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: opacity .15s;
     }
 
-    .fullscreen-btn {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      padding: .45rem .7rem;
-      font-size: .75rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: border-color .2s, background .2s;
-    }
-
-    .fullscreen-btn:hover {
-      border-color: var(--primary);
-      background: #f0f5fa;
-    }
+    .watch-btn:hover { opacity: .85; }
+    .watch-btn:active { opacity: .7; }
 
     footer {
       text-align: center;
@@ -261,19 +255,7 @@
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/Pe0FAPMOHbw"
-            title="Coffee Maker"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="video-actions">
-          <button class="fullscreen-btn" type="button" onclick="openFullscreenFromButton(this)">
-            Watch Full Screen
-          </button>
-        </div>
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
       </div>
     </div>
 
@@ -322,7 +304,9 @@
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <div class="video-embed placeholder">🎬 Video coming soon</div>
+        <a class="watch-btn" href="https://youtube.com/shorts/Pe0FAPMOHbw" target="_blank" rel="noopener">
+          ▶ Watch Video
+        </a>
       </div>
     </div>
 
@@ -596,19 +580,6 @@
 function toggle(header) {
   const card = header.parentElement;
   card.classList.toggle('open');
-}
-
-function openFullscreenFromButton(button) {
-  const card = button.closest('.card');
-  const iframe = card ? card.querySelector('iframe') : null;
-  if (!iframe) return;
-
-  // Fullscreen must be user-triggered; this runs from a click.
-  if (iframe.requestFullscreen) {
-    iframe.requestFullscreen();
-  } else if (iframe.webkitRequestFullscreen) {
-    iframe.webkitRequestFullscreen();
-  }
 }
 
 // Auto-open the card if someone arrives via an anchor link (NFC tag)
