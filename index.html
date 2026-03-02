@@ -183,6 +183,28 @@
 
     .notes strong { color: var(--primary); }
 
+    .video-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: .5rem;
+    }
+
+    .fullscreen-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: .45rem .7rem;
+      font-size: .75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .fullscreen-btn:hover {
+      border-color: var(--primary);
+      background: #f0f5fa;
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -246,6 +268,11 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
+        </div>
+        <div class="video-actions">
+          <button class="fullscreen-btn" type="button" onclick="openFullscreenFromButton(this)">
+            Watch Full Screen
+          </button>
         </div>
       </div>
     </div>
@@ -569,6 +596,19 @@
 function toggle(header) {
   const card = header.parentElement;
   card.classList.toggle('open');
+}
+
+function openFullscreenFromButton(button) {
+  const card = button.closest('.card');
+  const iframe = card ? card.querySelector('iframe') : null;
+  if (!iframe) return;
+
+  // Fullscreen must be user-triggered; this runs from a click.
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen();
+  }
 }
 
 // Auto-open the card if someone arrives via an anchor link (NFC tag)
