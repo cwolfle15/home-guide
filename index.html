@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Our Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f6f3;
+      --surface: #ffffff;
+      --primary: #3d5a80;
+      --primary-light: #5b7faa;
+      --accent: #ee6c4d;
+      --text: #293241;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+
+    header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: .3rem; }
+    header p { font-size: .85rem; opacity: .85; }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 1rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      display: none;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: .4rem .8rem;
+      margin-right: .4rem;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--primary);
+      text-decoration: none;
+      background: #eef2f7;
+      transition: background .15s, color .15s;
+    }
+
+    nav a:hover { background: var(--primary); color: #fff; }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .category { margin-bottom: 2rem; }
+
+    .category-title {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: .75rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: .75rem;
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1rem;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .card-info { flex: 1; min-width: 0; }
+    .card-info h3 { font-size: .95rem; font-weight: 600; }
+    .card-info p { font-size: .75rem; color: var(--text-muted); margin-top: .1rem; }
+
+    .card-toggle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      transition: transform .2s;
+      flex-shrink: 0;
+    }
+
+    .card.open .card-toggle { transform: rotate(90deg); }
+
+    .card-body {
+      display: none;
+      padding: 0 1rem 1rem;
+    }
+
+    .card.open .card-body { display: block; }
+
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      background: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: .8rem;
+      overflow: hidden;
+      margin-bottom: .75rem;
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-embed.placeholder {
+      flex-direction: column;
+      gap: .3rem;
+      opacity: .6;
+    }
+
+    .notes {
+      font-size: .8rem;
+      line-height: 1.7;
+      color: var(--text);
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: .75rem 1rem;
+    }
+
+    .notes strong { color: var(--primary); }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 768px) {
+      header h1 { font-size: 1.75rem; }
+      nav { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to Our Home</h1>
+  <p>Tap any item below for a quick how-to video</p>
+</header>
+
+<main>
+
+  <!-- ============================================ -->
+  <!--  LIVING ROOM & ENTERTAINMENT                 -->
+  <!-- ============================================ -->
+  <div class="category">
+    <div class="category-title">Living Room & Entertainment</div>
+
+    <div class="card" id="tv">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">📺</div>
+        <div class="card-info">
+          <h3>TV Remote</h3>
+          <p>How to use the remote and find streaming apps</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <!-- PASTE YOUR YOUTUBE EMBED URL BELOW (replace the placeholder div) -->
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+        <div class="notes">
+          <p>Notes can go here if you want to add written tips too.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="lights">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">💡</div>
+        <div class="card-info">
+          <h3>Lights</h3>
+          <p>Which switches control which lights</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="auto-lights">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🔄</div>
+        <div class="card-info">
+          <h3>Turn Off Automatic Lights</h3>
+          <p>How to disable the automatic light timers</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="intercom">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🔔</div>
+        <div class="card-info">
+          <h3>Intercom</h3>
+          <p>How to buzz someone in</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!--  KITCHEN                                      -->
+  <!-- ============================================ -->
+  <div class="category">
+    <div class="category-title">Kitchen</div>
+
+    <div class="card" id="coffee">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">☕</div>
+        <div class="card-info">
+          <h3>Coffee Maker</h3>
+          <p>How to make espresso, latte, etc.</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="high-chair">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🪑</div>
+        <div class="card-info">
+          <h3>High Chair</h3>
+          <p>How to set up and clean the high chair</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="baby-dishwasher">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🍼</div>
+        <div class="card-info">
+          <h3>Baby Dishwasher</h3>
+          <p>How to load and run the baby bottle washer</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="baby-trash">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🗑️</div>
+        <div class="card-info">
+          <h3>Baby Trash Can</h3>
+          <p>How to change the bag and use the diaper pail</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="bottle-warmer">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🫙</div>
+        <div class="card-info">
+          <h3>Bottle Warmer</h3>
+          <p>How to warm a bottle to the right temp</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!--  BABY CARE                                    -->
+  <!-- ============================================ -->
+  <div class="category">
+    <div class="category-title">Baby Care</div>
+
+    <div class="card" id="bath-time">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🛁</div>
+        <div class="card-info">
+          <h3>Bath Time</h3>
+          <p>Full bath routine walkthrough</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="baby-monitor">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">📹</div>
+        <div class="card-info">
+          <h3>Baby Monitor & Screen Brightness</h3>
+          <p>How to use the monitor and adjust brightness</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="hatch">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🌙</div>
+        <div class="card-info">
+          <h3>Hatch</h3>
+          <p>Sound machine / night light settings</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="nails">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">✂️</div>
+        <div class="card-info">
+          <h3>How to Clip Her Nails</h3>
+          <p>Nail clipping tips and technique</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="wipes">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🧻</div>
+        <div class="card-info">
+          <h3>Wipes Refill</h3>
+          <p>How to refill the wipes dispenser</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!--  CAR & STROLLER                               -->
+  <!-- ============================================ -->
+  <div class="category">
+    <div class="category-title">Car & Stroller</div>
+
+    <div class="card" id="car-seat">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🚗</div>
+        <div class="card-info">
+          <h3>Car Seat</h3>
+          <p>How to buckle and adjust the car seat</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="car-install">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🔧</div>
+        <div class="card-info">
+          <h3>Car Seat Installation</h3>
+          <p>How to install / remove the car seat base</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="stroller">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">👶</div>
+        <div class="card-info">
+          <h3>Stroller</h3>
+          <p>How to fold, unfold, and attach the car seat</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="car-camera">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">📷</div>
+        <div class="card-info">
+          <h3>Car Camera</h3>
+          <p>How to view the baby camera in the car</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="carplay">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">📱</div>
+        <div class="card-info">
+          <h3>CarPlay</h3>
+          <p>How to connect and use CarPlay</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!--  HOME SYSTEMS                                 -->
+  <!-- ============================================ -->
+  <div class="category">
+    <div class="category-title">Home Systems</div>
+
+    <div class="card" id="back-door">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🔐</div>
+        <div class="card-info">
+          <h3>Back Door Lock</h3>
+          <p>How to lock and unlock the back door</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="radiators">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🌡️</div>
+        <div class="card-info">
+          <h3>Radiators</h3>
+          <p>How to turn radiators on/off and adjust heat</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+
+    <div class="card" id="boiler">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🔥</div>
+        <div class="card-info">
+          <h3>Boiler</h3>
+          <p>Boiler controls and settings</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <div class="video-embed placeholder">🎬 Video coming soon</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Made with love for the best grandparents ever</p>
+</footer>
+
+<script>
+function toggle(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+
+// Auto-open the card if someone arrives via an anchor link (NFC tag)
+function openAnchor() {
+  const hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+  const card = document.getElementById(hash);
+  if (card && card.classList.contains('card')) {
+    card.classList.add('open');
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+}
+
+window.addEventListener('hashchange', openAnchor);
+openAnchor();
+</script>
+
+</body>
+</html>
