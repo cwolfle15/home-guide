@@ -43,34 +43,6 @@
     header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: .3rem; }
     header p { font-size: .85rem; opacity: .85; }
 
-    nav {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: .75rem 1rem;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      position: sticky;
-      top: 0;
-      z-index: 99;
-      display: none;
-    }
-
-    nav a {
-      display: inline-block;
-      padding: .4rem .8rem;
-      margin-right: .4rem;
-      border-radius: 20px;
-      font-size: .75rem;
-      font-weight: 500;
-      color: var(--primary);
-      text-decoration: none;
-      background: #eef2f7;
-      transition: background .15s, color .15s;
-    }
-
-    nav a:hover { background: var(--primary); color: #fff; }
-
     main {
       max-width: 600px;
       margin: 0 auto;
@@ -146,17 +118,6 @@
 
     .card.open .card-body { display: block; }
 
-    .notes {
-      font-size: .8rem;
-      line-height: 1.7;
-      color: var(--text);
-      background: #f9fafb;
-      border-radius: 8px;
-      padding: .75rem 1rem;
-    }
-
-    .notes strong { color: var(--primary); }
-
     .watch-btn {
       display: block;
       text-align: center;
@@ -167,19 +128,30 @@
       text-decoration: none;
       border-radius: 10px;
       transition: opacity .15s;
-    }
-
-    .watch-btn.ready {
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    }
-
-    .watch-btn.pending {
-      background: linear-gradient(135deg, #c0392b, #e74c3c);
-      pointer-events: none;
     }
 
     .watch-btn:hover { opacity: .85; }
     .watch-btn:active { opacity: .7; }
+
+    .schedule-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      background: linear-gradient(135deg, var(--accent), #d4543b);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 10px rgba(238,108,77,.3);
+      transition: opacity .15s, transform .1s;
+    }
+    .schedule-banner:hover { opacity: .9; }
+    .schedule-banner:active { transform: scale(.98); }
 
     footer {
       text-align: center;
@@ -190,7 +162,6 @@
 
     @media (min-width: 768px) {
       header h1 { font-size: 1.75rem; }
-      nav { display: block; }
     }
   </style>
 </head>
@@ -203,23 +174,25 @@
 
 <main>
 
-  <!-- ============================================ -->
-  <!--  LIVING ROOM & ENTERTAINMENT                 -->
-  <!-- ============================================ -->
+  <a class="schedule-banner" href="#" target="_blank" rel="noopener">
+    📋 Miles' Schedule & Info
+  </a>
+
+  <!-- LIVING ROOM & HOME -->
   <div class="category">
-    <div class="category-title">Living Room & Entertainment</div>
+    <div class="category-title">Living Room & Home</div>
 
     <div class="card" id="tv">
       <div class="card-header" onclick="toggle(this)">
         <div class="card-icon">📺</div>
         <div class="card-info">
-          <h3>TV Remote</h3>
-          <p>How to use the remote and find streaming apps</p>
+          <h3>Mastering the Remotes</h3>
+          <p>TV, soundbar, and streaming apps</p>
         </div>
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
+        <a class="watch-btn" href="https://youtube.com/shorts/z0T92WQIkzw" target="_blank" rel="noopener">▶ Watch Video</a>
       </div>
     </div>
 
@@ -227,27 +200,13 @@
       <div class="card-header" onclick="toggle(this)">
         <div class="card-icon">💡</div>
         <div class="card-info">
-          <h3>Lights</h3>
+          <h3>Let There Be Light</h3>
           <p>Which switches control which lights</p>
         </div>
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="auto-lights">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🔄</div>
-        <div class="card-info">
-          <h3>Turn Off Automatic Lights</h3>
-          <p>How to disable the automatic light timers</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
+        <a class="watch-btn" href="https://youtu.be/QBiRDLCdmNs" target="_blank" rel="noopener">▶ Watch Video</a>
       </div>
     </div>
 
@@ -255,267 +214,27 @@
       <div class="card-header" onclick="toggle(this)">
         <div class="card-icon">🔔</div>
         <div class="card-info">
-          <h3>Intercom</h3>
-          <p>How to buzz someone in</p>
+          <h3>Buzz Them In</h3>
+          <p>How to use the intercom system</p>
         </div>
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
+        <a class="watch-btn" href="https://youtube.com/shorts/oS4xUaJv-VE" target="_blank" rel="noopener">▶ Watch Video</a>
       </div>
     </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!--  KITCHEN                                      -->
-  <!-- ============================================ -->
-  <div class="category">
-    <div class="category-title">Kitchen</div>
-
-    <div class="card" id="coffee">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">☕</div>
-        <div class="card-info">
-          <h3>Coffee Maker</h3>
-          <p>How to make espresso, latte, etc.</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn ready" href="https://youtube.com/shorts/Pe0FAPMOHbw" target="_blank" rel="noopener">
-          ▶ Watch Video
-        </a>
-      </div>
-    </div>
-
-    <div class="card" id="high-chair">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🪑</div>
-        <div class="card-info">
-          <h3>High Chair</h3>
-          <p>How to set up and clean the high chair</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="baby-dishwasher">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🍼</div>
-        <div class="card-info">
-          <h3>Baby Dishwasher</h3>
-          <p>How to load and run the baby bottle washer</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="baby-trash">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🗑️</div>
-        <div class="card-info">
-          <h3>Baby Trash Can</h3>
-          <p>How to change the bag and use the diaper pail</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="bottle-warmer">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🫙</div>
-        <div class="card-info">
-          <h3>Bottle Warmer</h3>
-          <p>How to warm a bottle to the right temp</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!--  BABY CARE                                    -->
-  <!-- ============================================ -->
-  <div class="category">
-    <div class="category-title">Baby Care</div>
-
-    <div class="card" id="bath-time">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🛁</div>
-        <div class="card-info">
-          <h3>Bath Time</h3>
-          <p>Full bath routine walkthrough</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="baby-monitor">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">📹</div>
-        <div class="card-info">
-          <h3>Baby Monitor & Screen Brightness</h3>
-          <p>How to use the monitor and adjust brightness</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="hatch">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🌙</div>
-        <div class="card-info">
-          <h3>Hatch</h3>
-          <p>Sound machine / night light settings</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="nails">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">✂️</div>
-        <div class="card-info">
-          <h3>How to Clip Her Nails</h3>
-          <p>Nail clipping tips and technique</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="wipes">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🧻</div>
-        <div class="card-info">
-          <h3>Wipes Refill</h3>
-          <p>How to refill the wipes dispenser</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!--  CAR & STROLLER                               -->
-  <!-- ============================================ -->
-  <div class="category">
-    <div class="category-title">Car & Stroller</div>
-
-    <div class="card" id="car-seat">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🚗</div>
-        <div class="card-info">
-          <h3>Car Seat</h3>
-          <p>How to buckle and adjust the car seat</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="car-install">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">🔧</div>
-        <div class="card-info">
-          <h3>Car Seat Installation</h3>
-          <p>How to install / remove the car seat base</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="stroller">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">👶</div>
-        <div class="card-info">
-          <h3>Stroller</h3>
-          <p>How to fold, unfold, and attach the car seat</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="car-camera">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">📷</div>
-        <div class="card-info">
-          <h3>Car Camera</h3>
-          <p>How to view the baby camera in the car</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-
-    <div class="card" id="carplay">
-      <div class="card-header" onclick="toggle(this)">
-        <div class="card-icon">📱</div>
-        <div class="card-info">
-          <h3>CarPlay</h3>
-          <p>How to connect and use CarPlay</p>
-        </div>
-        <span class="card-toggle">›</span>
-      </div>
-      <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================ -->
-  <!--  HOME SYSTEMS                                 -->
-  <!-- ============================================ -->
-  <div class="category">
-    <div class="category-title">Home Systems</div>
 
     <div class="card" id="back-door">
       <div class="card-header" onclick="toggle(this)">
         <div class="card-icon">🔐</div>
         <div class="card-info">
-          <h3>Back Door Lock</h3>
+          <h3>Cracking the August Lock</h3>
           <p>How to lock and unlock the back door</p>
         </div>
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
+        <a class="watch-btn" href="https://youtube.com/shorts/BYgxefzDhP4" target="_blank" rel="noopener">▶ Watch Video</a>
       </div>
     </div>
 
@@ -523,13 +242,13 @@
       <div class="card-header" onclick="toggle(this)">
         <div class="card-icon">🌡️</div>
         <div class="card-info">
-          <h3>Radiators</h3>
-          <p>How to turn radiators on/off and adjust heat</p>
+          <h3>Staying Toasty</h3>
+          <p>How to adjust the radiators</p>
         </div>
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
+        <a class="watch-btn" href="https://youtube.com/shorts/jw74-YDSafI" target="_blank" rel="noopener">▶ Watch Video</a>
       </div>
     </div>
 
@@ -537,13 +256,224 @@
       <div class="card-header" onclick="toggle(this)">
         <div class="card-icon">🔥</div>
         <div class="card-info">
-          <h3>Boiler</h3>
-          <p>Boiler controls and settings</p>
+          <h3>Boiler Basics</h3>
+          <p>Controls and settings</p>
         </div>
         <span class="card-toggle">›</span>
       </div>
       <div class="card-body">
-        <a class="watch-btn pending" href="#">▶ Video Coming Soon</a>
+        <a class="watch-btn" href="https://youtu.be/b9GR3Wp7Q1s" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- KITCHEN -->
+  <div class="category">
+    <div class="category-title">Kitchen</div>
+
+    <div class="card" id="coffee">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">☕</div>
+        <div class="card-info">
+          <h3>Espresso Yourself</h3>
+          <p>How to make coffee on the espresso machine</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtu.be/zb3piUpNumc" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="baby-dishwasher">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🍼</div>
+        <div class="card-info">
+          <h3>Bottle Washer 101</h3>
+          <p>Load it, run it, done</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/oCE4bP5pN2c" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="bottle-warmer">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🫙</div>
+        <div class="card-info">
+          <h3>Warm It Up</h3>
+          <p>Bottle warmer to the perfect temp</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/nJH0WKxZqLs" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BABY CARE -->
+  <div class="category">
+    <div class="category-title">Baby Care</div>
+
+    <div class="card" id="bath-time">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🛁</div>
+        <div class="card-info">
+          <h3>Splish Splash</h3>
+          <p>Full bath time setup and routine</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/qe7Z69WPpHw" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="baby-monitor">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">📹</div>
+        <div class="card-info">
+          <h3>Monitor & Screen Brightness</h3>
+          <p>Adjusting the baby monitor display</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/nzDU8T0r33Y" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="hatch">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🌙</div>
+        <div class="card-info">
+          <h3>Hatch Sound Machine</h3>
+          <p>White noise and night light settings</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/oCE4bP5pN2c" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="nails">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">✂️</div>
+        <div class="card-info">
+          <h3>Tiny Nail Trim</h3>
+          <p>How to clip and file her nails</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/7FWchreEB-8" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="wipes">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🧻</div>
+        <div class="card-info">
+          <h3>Wipes Reload</h3>
+          <p>How to refill the wipes dispenser</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/f9Y--Rb1jOI" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="high-chair">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🪑</div>
+        <div class="card-info">
+          <h3>High Chair How-To</h3>
+          <p>Setup, feeding, and cleanup</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/SnWrWwcCSzo" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="baby-trash">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🗑️</div>
+        <div class="card-info">
+          <h3>Diaper Pail Duty</h3>
+          <p>How to swap the trash bag</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/W-9p9Y025tw" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAR -->
+  <div class="category">
+    <div class="category-title">Car & Car Seat</div>
+
+    <div class="card" id="car-seat">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🚗</div>
+        <div class="card-info">
+          <h3>All About the Car Seat</h3>
+          <p>Everything you need to know</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/QT6hJsQJSPM" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="car-install">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🔧</div>
+        <div class="card-info">
+          <h3>Car Seat into the Volvo</h3>
+          <p>Installing with the base</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/vtopU1yTdxY" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="car-no-base">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">🪢</div>
+        <div class="card-info">
+          <h3>No Base? No Problem</h3>
+          <p>Seat belt only installation</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtube.com/shorts/NW5GK9TbNlk" target="_blank" rel="noopener">▶ Watch Video</a>
+      </div>
+    </div>
+
+    <div class="card" id="carplay">
+      <div class="card-header" onclick="toggle(this)">
+        <div class="card-icon">📱</div>
+        <div class="card-info">
+          <h3>CarPlay & Baby Camera</h3>
+          <p>Connecting CarPlay and viewing the camera</p>
+        </div>
+        <span class="card-toggle">›</span>
+      </div>
+      <div class="card-body">
+        <a class="watch-btn" href="https://youtu.be/VhwKHuBFCKY" target="_blank" rel="noopener">▶ Watch Video</a>
       </div>
     </div>
   </div>
@@ -560,7 +490,6 @@ function toggle(header) {
   card.classList.toggle('open');
 }
 
-// Auto-open the card if someone arrives via an anchor link (NFC tag)
 function openAnchor() {
   const hash = window.location.hash.replace('#', '');
   if (!hash) return;
